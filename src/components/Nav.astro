@@ -1,0 +1,209 @@
+---
+const navItems = [
+  { label: 'About', href: '/about' },
+  { label: 'Collection', href: '/collection' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Store', href: '/store' },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="site-nav">
+  <a href="/" class="nav-logo">Leather & Paint</a>
+
+  <!-- Desktop links -->
+  <ul class="nav-links">
+ {navItems.map(item => (
+      <li>
+        <a href={item.href} class={currentPath === item.href ? 'active' : ''}>{item.label}</a>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Hamburger button (mobile) -->
+  <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Side drawer -->
+<div class="nav-drawer" aria-hidden="true">
+  <button class="nav-drawer-close" aria-label="Close menu">✕</button>
+  <ul>
+{navItems.map(item => (
+      <li>
+        <a href={item.href} class={currentPath === item.href ? 'active' : ''}>{item.label}</a>
+      </li>
+    ))}
+  </ul>
+</div>
+<div class="nav-overlay"></div>
+
+<style>
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 2rem;
+    background: rgba(234, 233, 245, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .nav-logo {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #2a2118;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #2a2118;
+    opacity: 0.65;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    opacity: 1;
+  }
+
+  /* Hamburger */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #2a2118;
+    transition: all 0.2s ease;
+  }
+
+  /* Drawer */
+  .nav-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: #EAE9F5;
+    z-index: 200;
+    padding: 2rem 1.5rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    border-right: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .nav-drawer.open {
+    transform: translateX(0);
+  }
+
+  .nav-drawer ul {
+    list-style: none;
+    margin: 3rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .nav-drawer a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #2a2118;
+    opacity: 0.65;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav-drawer a:hover,
+  .nav-drawer a.active {
+    opacity: 1;
+  }
+
+  .nav-drawer-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #2a2118;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  .nav-drawer-close:hover { opacity: 1; }
+
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 150;
+  }
+
+  .nav-overlay.open { display: block; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+</style>
+
+<script>
+  const hamburger = document.querySelector('.nav-hamburger');
+  const drawer = document.querySelector('.nav-drawer');
+  const overlay = document.querySelector('.nav-overlay');
+  const closeBtn = document.querySelector('.nav-drawer-close');
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+
+  hamburger.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+</script>

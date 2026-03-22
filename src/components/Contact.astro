@@ -1,0 +1,48 @@
+---
+const email = 'leatherandpainted@gmail.com';
+const subject = 'Custom Order Inquiry — Leather and Paint';
+const mailtoHref = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+---
+
+<div class="contact-container">
+  <div class="wrapper">
+    <div class="contact-section">
+      <p class="contact-email-display">
+        Questions or custom requests? Reach out at&nbsp;
+        <a href={mailtoHref}>{email}</a>
+      </p>
+      <div>
+        <button class="contact-btn" id="open-contact-modal">Send a Message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <button class="modal-close" id="close-contact-modal" aria-label="Close">&times;</button>
+    <h3 id="modal-title">Get in Touch</h3>
+    <p>
+      Send us an email at:<br />
+      <a href={mailtoHref} class="email-link">{email}</a>
+    </p>
+    <a href={mailtoHref} class="modal-mailto">Open Email App</a>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('contact-modal')!;
+  document.getElementById('open-contact-modal')?.addEventListener('click', () => {
+    modal.classList.add('open');
+  });
+  document.getElementById('close-contact-modal')?.addEventListener('click', () => {
+    modal.classList.remove('open');
+  });
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('open');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') modal.classList.remove('open');
+  });
+</script>

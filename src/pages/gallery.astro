@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Slideshow from '../components/Slideshow.astro';
+const slideshowImages = [
+  { src: '/images/slideshow/slide01.jpg', alt: 'Leather work 1' },
+  { src: '/images/slideshow/slide02.jpg', alt: 'Leather work 2' },
+  { src: '/images/slideshow/slide03.jpg', alt: 'Leather work 3' },
+];
+---
+<Layout
+  title="Gallery — Leather and Paint"
+  description="Process shots, finished work and experiments from the leather studio in NYC."
+  canonicalPath="/gallery">  
+  <div class="site-wrapper">
+    <div class="site-main">
+      <div class="inner">
+        <p class="text-style-1">gallery</p>
+
+        <Slideshow images={slideshowImages} />
+
+        <div class="gallery gallery-process">
+          <div class="inner">
+            <ul>
+              <li>
+                <span class="thumbnail">
+                  <span class="frame">
+                    <img src="/images/gallery03/6ce736d7.jpg" alt="coasters" loading="lazy" />
+                  </span>
+                </span>
+                <div class="caption"><p>making coasters</p></div>
+              </li>
+              <li>
+                <span class="thumbnail">
+                  <span class="frame">
+                    <img src="/images/gallery03/7e0cb916.jpg" alt="prototyping" loading="lazy" />
+                  </span>
+                </span>
+                <div class="caption"><p>prototyping</p></div>
+              </li>
+              <li>
+                <span class="thumbnail">
+                  <span class="frame">
+                    <img src="/images/gallery03/ea426600.jpg" alt="an idea" loading="lazy" />
+                  </span>
+                </span>
+                <div class="caption"><p>an idea</p></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</Layout>

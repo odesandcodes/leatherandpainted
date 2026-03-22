@@ -1,0 +1,56 @@
+---
+export interface Props {
+  images: { src: string; alt: string }[];
+}
+const { images } = Astro.props;
+---
+
+<div class="slideshow" id="slideshow01">
+  <div class="content">
+    <div class="bg">
+      <div class="slides" id="slides">
+        {images.map((img) => (
+          <div class="slide">
+            <img src={img.src} alt={img.alt} loading="lazy" />
+          </div>
+        ))}
+      </div>
+      <div class="slideshow-arrows">
+        <button id="prev" aria-label="Previous">&#8592;</button>
+        <button id="next" aria-label="Next">&#8594;</button>
+      </div>
+    </div>
+  </div>
+  <div class="slideshow-nav" id="dots">
+    {images.map((_, i) => (
+      <button class={`dot${i === 0 ? ' active' : ''}`} data-index={i} aria-label={`Slide ${i + 1}`}></button>
+    ))}
+  </div>
+</div>
+
+<script>
+  const slides = document.getElementById('slides') as HTMLElement;
+  const dots = document.querySelectorAll('#dots .dot') as NodeListOf<HTMLButtonElement>;
+  const total = dots.length;
+  let current = 0;
+
+  function goTo(n: number) {
+    current = (n + total) % total;
+    slides.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  document.getElementById('prev')?.addEventListener('click', () => goTo(current - 1));
+  document.getElementById('next')?.addEventListener('click', () => goTo(current + 1));
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => goTo(Number(dot.dataset.index)));
+  });
+
+  // Touch swipe support
+  let startX = 0;
+  slides.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  slides.addEventListener('touchend', (e) => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+</script>
