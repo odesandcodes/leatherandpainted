@@ -266,12 +266,18 @@ import Layout from '../layouts/Layout.astro';
 
   /* ═══ RESPONSIVE ═══ */
   @media (max-width: 768px) {
-      .hero-inner {
-      display: grid;
-      grid-template-columns: 2fr 3fr;
-      gap: 2rem;
-      align-items: center;
-      overflow: hidden;
+    .hero-inner {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    .hero-col-text {
+      width: 100% !important;
+      padding: 1.5rem !important;
+      text-align: center;
+    }
+    .hero-col-image {
+      width: 100% !important;
+      padding: 1.5rem !important;
     }
     .home-sections {
       grid-template-columns: 1fr;
