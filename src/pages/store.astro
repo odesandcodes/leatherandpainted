@@ -145,7 +145,7 @@ const products = [
                 <div class="store-item-footer">
                   <span class="store-price">{product.price}</span>
               {!product.sold ? (
-                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="margin:0;padding:0;border:none;box-shadow:none;background:none;">
                     <input type="hidden" name="cmd" value="_xclick" />
                     <input type="hidden" name="business" value="2eps2gether@gmail.com" />
                     <input type="hidden" name="item_name" value={product.paypalName} />

@@ -4,16 +4,90 @@ import Layout from '../layouts/Layout.astro';
 <Layout
   title="About — Leather and Paint"
   description="We handmake leather goods in NYC. Sometimes we paint them, sometimes we don't."
-  canonicalPath="/about">  
+  canonicalPath="/about"
+>
   <div class="site-wrapper">
     <div class="site-main">
       <div class="inner">
-        <h2 class="text-style-1">About</h2>
-        <p class="text-style-2">
-          <span class="p">We handmake leather goods in NYC. Sometimes we paint them, sometimes we don't. We love doing it and hope you can enjoy the products, the images, the process.</span>
-          <span class="p">We can also do custom items, depending on the request.</span>
-        </p>
+
+        <div class="about-layout">
+          <div class="about-text">
+            <h2 class="text-style-1">About</h2>
+
+            <p class="about-body">
+              We are a small operation in New York City — two people who fell in love with leather a few years back and never really stopped. What started as a weekend hobby turned into something that looks, from a certain angle, like a business. We're still not sure which it is. We're okay with that.
+            </p>
+
+            <p class="about-body">
+              Everything we make is cut, punched, stitched and finished by hand. No factory. No shortcuts. Just leather, thread, tools, and time. We saddle stitch everything — it takes longer, it looks better, and it lasts longer. That's the deal.
+            </p>
+
+            <p class="about-body">
+              Sometimes we paint the leather. Sometimes we dye it. Sometimes we leave it raw and let it develop its own patina over time. We like all three. The painted pieces are originals — no two are alike, and once they're gone, they're gone.
+            </p>
+
+            <p class="about-body">
+              We're based in NYC and we love making custom pieces. If you have something in mind — a wallet in a specific color, a bag in a particular size, something with your initials or a design you've been thinking about — reach out. We'll talk it through and figure out if we can make it happen.
+            </p>
+
+            <p class="about-body">
+              Thanks for being here. Enjoy the work.
+            </p>
+          </div>
+
+          <div class="about-image">
+            <img src="/images/gallery03/6ce736d7.jpg" alt="Making leather coasters in the studio" />
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 </Layout>
+
+<style>
+  .about-layout {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-body {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1em;
+    font-weight: 300;
+    color: #2a2118;
+    line-height: 1.8;
+    text-align: justify;
+    margin: 0;
+  }
+
+  .about-image {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .about-image img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .about-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .about-image {
+      position: static;
+    }
+  }
+</style>
