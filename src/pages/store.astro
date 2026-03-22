@@ -143,7 +143,7 @@ const products = [
                   {product.details.map(d => <li>{d}</li>)}
                 </ul>
                 <div class="store-item-footer">
-                  <span class="store-price">{product.price}</span>
+                  <span class="store-price">${product.price}</span>
               {!product.sold ? (
                   <form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="margin:0;padding:0;border:none;box-shadow:none;background:none;">
                     <input type="hidden" name="cmd" value="_xclick" />
@@ -154,7 +154,7 @@ const products = [
                     <input type="hidden" name="quantity" value="1" />
                     <input type="hidden" name="return" value="https://leatherandpainted.com" />
                     <input type="hidden" name="cancel_return" value="https://leatherandpainted.com" />
-                    <button type="submit" class="btn-buynow">Buy Now — ${product.price}</button>
+                    <button type="submit" class="btn-buynow">Buy Now</button>
                   </form>
                 ) : (
                   <span class="btn-sold">Sold</span>
