@@ -53,7 +53,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- ═══ TAGLINE BAND ═══ -->
         <div class="home-tagline">
           <p>We handmake leather goods in NYC. Sometimes we paint them, sometimes we don't.</p>
-          <a href="/collection" class="btn-ghost">See the Work</a>
+          <a href="/gallery" class="btn-ghost">See the Work</a>
         </div>
 
       </div>
@@ -62,24 +62,7 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-
-:global(.site-wrapper),
-:global(.site-main),
-:global(.inner),
-:global(.hero-container),
-:global(.hero-inner) {
-  overflow: visible !important;
-}
-
-:global(.hero-col-text) {
-  margin-left: 0 !important;
-  padding-left: 1.5rem !important;
-  min-width: 0;
-}
-
   /* ═══ HERO ═══ */
-  .hero-container { width: 100%; }
-
   :global(.hero-inner) {
     display: flex !important;
     flex-wrap: nowrap !important;
@@ -111,41 +94,10 @@ import Layout from '../layouts/Layout.astro';
     background: #3b2d21;
   }
 
-  .hero-col-text {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    min-width: 0;
-    padding-left: 1rem;
-  }
-
   .text-style-3 {
     font-size: clamp(1.2rem, 2vw, 1.8rem) !important;
     line-height: 1.3;
-    word-break: normal;
     white-space: nowrap;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .hero-col-image .image-frame {
-    border-radius: 12px;
-    overflow: hidden;
-    aspect-ratio: 3/4;
-    background: #3b2d21;
-    width: 100%;
-  }
-
-  .hero-col-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 
   /* ═══ BUTTONS ═══ */
@@ -160,18 +112,19 @@ import Layout from '../layouts/Layout.astro';
     border: 1.5px solid #2a2118;
     padding: 0.55em 1.2em;
     border-radius: 6px;
-    transition: all 0.2s ease;
     display: inline-block;
+    transition: all 0.2s ease;
   }
-
-  .btn-ghost:hover {
-    background: #2a2118;
-    color: #EAE9F5;
-  }
+  .btn-ghost:hover { background: #2a2118; color: #EAE9F5; }
 
   .btn-buynow {
     border-radius: 6px;
     display: inline-block;
+  }
+
+  .button-row {
+    margin-top: 1.5rem;
+    text-align: center;
   }
 
   /* ═══ SECTION PREVIEW CARDS ═══ */
@@ -233,7 +186,7 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .home-card-body p {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
     font-size: 0.78rem;
     font-weight: 300;
     color: #4a3f35;
@@ -267,18 +220,25 @@ import Layout from '../layouts/Layout.astro';
 
   /* ═══ RESPONSIVE ═══ */
   @media (max-width: 768px) {
-    .hero-inner {
-      display: flex !important;
+    :global(.hero-inner) {
       flex-direction: column !important;
     }
-    .hero-col-text {
-      width: 100% !important;
+    :global(.hero-col-text) {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
       padding: 1.5rem !important;
       text-align: center;
     }
-    .hero-col-image {
-      width: 100% !important;
+    :global(.hero-col-image) {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
       padding: 1.5rem !important;
+    }
+    :global(.hero-col-image .image-frame) {
+      aspect-ratio: 4/3 !important;
+    }
+    .text-style-3 {
+      white-space: normal;
     }
     .home-sections {
       grid-template-columns: 1fr;
