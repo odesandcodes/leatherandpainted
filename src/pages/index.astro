@@ -80,12 +80,35 @@ import Layout from '../layouts/Layout.astro';
   /* ═══ HERO ═══ */
   .hero-container { width: 100%; }
 
-  .hero-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+  :global(.hero-inner) {
+    display: flex !important;
+    flex-wrap: nowrap !important;
     align-items: center;
+    overflow: visible;
+  }
+
+  :global(.hero-col-text) {
+    flex: 0 0 55% !important;
+    max-width: 55% !important;
+    min-width: 0;
+    padding: 2rem 1.5rem 2rem 2.5rem;
+    text-align: left;
+  }
+
+  :global(.hero-col-image) {
+    flex: 0 0 45% !important;
+    max-width: 45% !important;
+    padding: 1.5rem;
+    display: flex;
+    align-items: stretch;
+  }
+
+  :global(.hero-col-image .image-frame) {
+    width: 100% !important;
+    aspect-ratio: 1/1 !important;
+    border-radius: 12px;
     overflow: hidden;
+    background: #3b2d21;
   }
 
   .hero-col-text {
@@ -97,11 +120,10 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .text-style-3 {
-    font-size: clamp(1.2rem, 2.5vw, 2rem) !important;
+    font-size: clamp(1.2rem, 2vw, 1.8rem) !important;
     line-height: 1.3;
-    word-break: break-word;
-    white-space: normal;
-    text-align: left;
+    word-break: normal;
+    white-space: nowrap;
   }
 
   .hero-actions {
@@ -114,10 +136,9 @@ import Layout from '../layouts/Layout.astro';
   .hero-col-image .image-frame {
     border-radius: 12px;
     overflow: hidden;
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/4;
     background: #3b2d21;
     width: 100%;
-    min-height: 280px;
   }
 
   .hero-col-image img {
