@@ -448,6 +448,9 @@ const products = [
 .qv-prev { left: 0.75rem; }
 .qv-next { right: 0.75rem; }
 
+.store-item-image:has(.img-dot:only-child) .img-nav {
+  display: none;
+}
 
   @media (max-width: 600px) {
     .store-grid { grid-template-columns: 1fr; }
